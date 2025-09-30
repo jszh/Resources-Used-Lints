@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="resources_used_lints API docs, for the Dart programming language.">
+  <title>resources_used_lints - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">resources_used_lints package</li>
+  </ol>
+  <div class="self-name">resources_used_lints</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="resources-used-lints">Resources Used Lints</h1>
+<p>Custom lint rules for enforcing proper documentation of resources used in academic coursework, including external consultations and AI assistance.</p>
+<h2 id="overview">Overview</h2>
+<p>This package provides lint rules to ensure students properly document their use of external resources and AI tools in their code comments, following a structured format similar to Flutter's TODO comment style.</p>
+<h2 id="comment-formats">Comment Formats</h2>
+<h3 id="consulted-comments">CONSULTED Comments</h3>
+<p>Document external resources consulted:</p>
+<pre class="language-dart"><code class="language-dart">// CONSULTED(URL_OF_RESOURCE): Explanation of how the resource was used
+</code></pre>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">// CONSULTED(https://stackoverflow.com/questions/12345): Found algorithm for sorting implementation
+</code></pre>
+<h3 id="ai_prompt-comments">AI_PROMPT Comments</h3>
+<p>Document prompts given to AI tools:</p>
+<pre class="language-dart"><code class="language-dart">// AI_PROMPT(GENAI_TOOL_NAME): The prompt text provided to the AI
+</code></pre>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">// AI_PROMPT(ChatGPT): Please help me implement a binary search function in Dart
+</code></pre>
+<h3 id="ai_response-comments">AI_RESPONSE Comments</h3>
+<p>Document responses received from AI tools:</p>
+<pre class="language-dart"><code class="language-dart">// AI_RESPONSE(GENAI_TOOL_NAME): The output received from the AI
+//   Additional lines of response can continue
+//   with proper indentation
+</code></pre>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">// AI_RESPONSE(ChatGPT): Here's a binary search implementation:
+//   int binarySearch(List&lt;int&gt; arr, int target) {
+//     int left = 0, right = arr.length - 1;
+//     // ... rest of implementation
+//   }
+</code></pre>
+<h3 id="ai_other-comments">AI_OTHER Comments</h3>
+<p>Document other uses of AI tools:</p>
+<pre class="language-dart"><code class="language-dart">// AI_OTHER(GENAI_TOOL_NAME): Description of other AI assistance received
+</code></pre>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">// AI_OTHER(GitHub Copilot): Used autocomplete suggestions for variable naming
+</code></pre>
+<h3 id="reflection-comments">REFLECTION Comments</h3>
+<p>Document learning and modifications made:</p>
+<pre class="language-dart"><code class="language-dart">// REFLECTION: Student reflection on what was learned and any changes made
+</code></pre>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">// REFLECTION: The AI solution needed modification to handle edge cases properly. I learned about the importance of input validation.
+</code></pre>
+<h2 id="lint-rules">Lint Rules</h2>
+<h3 id="format-rules">Format Rules</h3>
+<ul>
+<li><code>consulted_format</code>: Ensures CONSULTED comments follow the proper format</li>
+<li><code>ai_prompt_format</code>: Ensures AI_PROMPT comments follow the proper format</li>
+<li><code>ai_response_format</code>: Ensures AI_RESPONSE comments follow the proper format</li>
+<li><code>ai_other_format</code>: Ensures AI_OTHER comments follow the proper format</li>
+<li><code>reflection_format</code>: Ensures REFLECTION comments follow the proper format</li>
+</ul>
+<h3 id="relationship-rules">Relationship Rules</h3>
+<ul>
+<li><code>ai_prompt_response_pair</code>: Ensures every AI_PROMPT is followed by an AI_RESPONSE with the same tool name</li>
+<li><code>reflection_required</code>: Ensures all CONSULTED and AI_* comments are followed by REFLECTION comments</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<ol>
+<li>Add this package as a dev dependency in your <code>pubspec.yaml</code>:</li>
+</ol>
+<pre class="language-yaml"><code class="language-yaml">dev_dependencies:
+  resources_used_lints:
+    path: ./resources-used-lints # Adjust path as needed
+  custom_lint: ^0.6.4
+</code></pre>
+<ol start="2">
+<li>Create or update your <code>analysis_options.yaml</code>:</li>
+</ol>
+<pre class="language-yaml"><code class="language-yaml">analyzer:
+  plugins:
+    - custom_lint
+
+custom_lint:
+  rules:
+    # Resource documentation format rules
+    - consulted_format
+    - ai_prompt_format
+    - ai_response_format
+    - ai_other_format
+    - reflection_format
+
+    # Relationship validation rules
+    - ai_prompt_response_pair
+    - reflection_required
+</code></pre>
+<ol start="3">
+<li>Run the linter:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">dart run custom_lint
+</code></pre>
+<h2 id="example-valid-comment-sequence">Example Valid Comment Sequence</h2>
+<pre class="language-dart"><code class="language-dart">// CONSULTED(https://dart.dev/guides/language/language-tour): Learned about async/await
+// REFLECTION: Understanding async programming helped me write better concurrent code
+
+// AI_PROMPT(ChatGPT): How do I implement error handling in async functions?
+// AI_RESPONSE(ChatGPT): Use try-catch blocks around await expressions and handle specific exception types
+// REFLECTION: I had to add additional null checks that the AI didn't mention
+
+// AI_OTHER(GitHub Copilot): Used for auto-completing import statements
+// REFLECTION: Copilot suggestions saved time but I verified each import was actually needed
+</code></pre>
+<h2 id="course-style-guide-integration">Course Style Guide Integration</h2>
+<p>These lint rules support academic integrity requirements by:</p>
+<ol>
+<li><strong>Transparency</strong>: All external resource usage is clearly documented</li>
+<li><strong>Learning Documentation</strong>: Reflections capture what was learned and how AI output was modified</li>
+<li><strong>Accountability</strong>: Clear attribution of AI assistance vs. original work</li>
+<li><strong>Quality Assurance</strong>: Enforces that AI assistance is followed by critical evaluation</li>
+</ol>
+<p>Students are required to use these comment formats liberally throughout their code to maintain academic integrity and demonstrate their learning process.</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="ai_other_format_lint">
+  <span class="name"><a href="lint_rules_ai_other_format_lint/">lint_rules/ai_other_format_lint</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ai_prompt_format_lint">
+  <span class="name"><a href="lint_rules_ai_prompt_format_lint/">lint_rules/ai_prompt_format_lint</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ai_prompt_response_pair_lint">
+  <span class="name"><a href="lint_rules_ai_prompt_response_pair_lint/">lint_rules/ai_prompt_response_pair_lint</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="ai_response_format_lint">
+  <span class="name"><a href="lint_rules_ai_response_format_lint/">lint_rules/ai_response_format_lint</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="consulted_format_lint">
+  <span class="name"><a href="lint_rules_consulted_format_lint/">lint_rules/consulted_format_lint</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="reflection_format_lint">
+  <span class="name"><a href="lint_rules_reflection_format_lint/">lint_rules/reflection_format_lint</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="reflection_required_lint">
+  <span class="name"><a href="lint_rules_reflection_required_lint/">lint_rules/reflection_required_lint</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="resources_used_lints">
+  <span class="name"><a href="resources_used_lints/">resources_used_lints</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li class="self-crumb">resources_used_lints package</li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">resources_used_lints</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="lint_rules_ai_other_format_lint/">lint_rules/ai_other_format_lint</a></li>
+      <li><a href="lint_rules_ai_prompt_format_lint/">lint_rules/ai_prompt_format_lint</a></li>
+      <li><a href="lint_rules_ai_prompt_response_pair_lint/">lint_rules/ai_prompt_response_pair_lint</a></li>
+      <li><a href="lint_rules_ai_response_format_lint/">lint_rules/ai_response_format_lint</a></li>
+      <li><a href="lint_rules_consulted_format_lint/">lint_rules/consulted_format_lint</a></li>
+      <li><a href="lint_rules_reflection_format_lint/">lint_rules/reflection_format_lint</a></li>
+      <li><a href="lint_rules_reflection_required_lint/">lint_rules/reflection_required_lint</a></li>
+      <li><a href="resources_used_lints/">resources_used_lints</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    resources_used_lints
+      1.0.0
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+analyzer:
+  plugins:
+    - custom_lint
+
+custom_lint:
+  rules:
+    # Documentation format rules
+    - consulted_format
+    - ai_prompt_format
+    - ai_response_format
+    - ai_other_format
+    - reflection_format
+
+    # Relationship rules
+    - ai_prompt_response_pair
+    - reflection_required
