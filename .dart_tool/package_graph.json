@@ -15,13 +15,14 @@
     },
     {
       "name": "custom_lint_builder",
-      "version": "0.6.4",
+      "version": "0.8.1",
       "dependencies": [
         "analyzer",
         "analyzer_plugin",
         "collection",
         "custom_lint",
         "custom_lint_core",
+        "custom_lint_visitor",
         "glob",
         "hotreloader",
         "meta",
@@ -33,18 +34,19 @@
     },
     {
       "name": "analyzer_plugin",
-      "version": "0.11.3",
+      "version": "0.13.7",
       "dependencies": [
         "analyzer",
         "collection",
         "dart_style",
+        "path",
         "pub_semver",
         "yaml"
       ]
     },
     {
       "name": "analyzer",
-      "version": "6.4.1",
+      "version": "8.1.1",
       "dependencies": [
         "_fe_analyzer_shared",
         "collection",
@@ -62,7 +64,7 @@
     },
     {
       "name": "rxdart",
-      "version": "0.27.7",
+      "version": "0.28.0",
       "dependencies": []
     },
     {
@@ -117,12 +119,20 @@
       ]
     },
     {
+      "name": "custom_lint_visitor",
+      "version": "1.0.0+8.1.1",
+      "dependencies": [
+        "analyzer"
+      ]
+    },
+    {
       "name": "custom_lint_core",
-      "version": "0.6.3",
+      "version": "0.8.1",
       "dependencies": [
         "analyzer",
         "analyzer_plugin",
         "collection",
+        "custom_lint_visitor",
         "glob",
         "matcher",
         "meta",
@@ -130,12 +140,13 @@
         "path",
         "pubspec_parse",
         "source_span",
+        "uuid",
         "yaml"
       ]
     },
     {
       "name": "custom_lint",
-      "version": "0.6.4",
+      "version": "0.8.1",
       "dependencies": [
         "analyzer",
         "analyzer_plugin",
@@ -180,14 +191,16 @@
     },
     {
       "name": "dart_style",
-      "version": "2.3.6",
+      "version": "3.1.2",
       "dependencies": [
         "analyzer",
         "args",
         "collection",
+        "package_config",
         "path",
         "pub_semver",
-        "source_span"
+        "source_span",
+        "yaml"
       ]
     },
     {
@@ -223,7 +236,7 @@
     },
     {
       "name": "_fe_analyzer_shared",
-      "version": "67.0.0",
+      "version": "88.0.0",
       "dependencies": [
         "meta"
       ]
@@ -283,6 +296,16 @@
       ]
     },
     {
+      "name": "uuid",
+      "version": "4.5.1",
+      "dependencies": [
+        "crypto",
+        "fixnum",
+        "meta",
+        "sprintf"
+      ]
+    },
+    {
       "name": "matcher",
       "version": "0.12.17",
       "dependencies": [
@@ -294,18 +317,8 @@
       ]
     },
     {
-      "name": "uuid",
-      "version": "4.5.1",
-      "dependencies": [
-        "crypto",
-        "fixnum",
-        "meta",
-        "sprintf"
-      ]
-    },
-    {
       "name": "freezed_annotation",
-      "version": "2.4.4",
+      "version": "3.1.0",
       "dependencies": [
         "collection",
         "json_annotation",
@@ -343,6 +356,16 @@
       ]
     },
     {
+      "name": "fixnum",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "sprintf",
+      "version": "7.0.0",
+      "dependencies": []
+    },
+    {
       "name": "test_api",
       "version": "0.7.7",
       "dependencies": [
@@ -363,16 +386,6 @@
       "dependencies": [
         "path"
       ]
-    },
-    {
-      "name": "fixnum",
-      "version": "1.1.1",
-      "dependencies": []
-    },
-    {
-      "name": "sprintf",
-      "version": "7.0.0",
-      "dependencies": []
     },
     {
       "name": "stream_channel",
