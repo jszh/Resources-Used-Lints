@@ -5,7 +5,7 @@
   "packages": [
     {
       "name": "resources_used_lints",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "dependencies": [
         "analyzer",
         "analyzer_plugin",
