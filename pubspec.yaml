@@ -1,9 +1,9 @@
 # pubspec.yaml
 name: resources_used_lints
-version: 0.2.0
+version: 0.2.1
 
 environment:
-  sdk: "^3.4.0"
+  sdk: "^3.9.2"
 
 dependencies:
   analyzer: ^8.1.1
