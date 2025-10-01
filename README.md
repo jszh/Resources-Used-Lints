@@ -106,7 +106,7 @@ Example:
 ```yaml
 dev_dependencies:
   resources_used_lints:
-  custom_lint: ^0.6.4
+  custom_lint: ^0.8.1
 ```
 
 2. Create or update your `analysis_options.yaml`:

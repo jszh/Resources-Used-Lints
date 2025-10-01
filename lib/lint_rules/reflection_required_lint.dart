@@ -4,8 +4,6 @@ import 'package:analyzer/error/error.dart' hide LintCode;
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 import 'dart:math' as math;
 
-const _desc = r'CONSULTED and AI_* comments must be followed by REFLECTION';
-
 class ReflectionRequiredLint extends DartLintRule {
   // Only match properly formatted comments
   static final _consultedRegExp = RegExp(
@@ -23,8 +21,7 @@ class ReflectionRequiredLint extends DartLintRule {
       name: 'reflection_required',
       problemMessage:
           'CONSULTED and AI_* comments must be followed by REFLECTION',
-      correctionMessage: _desc,
-      errorSeverity: ErrorSeverity.ERROR);
+      errorSeverity: DiagnosticSeverity.ERROR);
 
   @override
   void run(

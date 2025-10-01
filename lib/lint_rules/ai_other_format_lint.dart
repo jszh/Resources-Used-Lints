@@ -2,9 +2,6 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/token.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
-const _desc = r'Use proper AI_OTHER format: '
-    '// AI_OTHER(GENAI_TOOL_NAME): Description of other use of AI resource';
-
 class AiOtherFormatLint extends DartLintRule {
   static final _aiOtherRegExp =
       RegExp(r'//+\s*AI_OTHER\b', caseSensitive: false);
@@ -19,7 +16,6 @@ class AiOtherFormatLint extends DartLintRule {
     name: 'ai_other_format',
     problemMessage:
         'AI_OTHER comment must follow format: // AI_OTHER(TOOL_NAME): Description text',
-    correctionMessage: _desc,
   );
 
   @override
@@ -53,17 +49,17 @@ class AiOtherFormatLint extends DartLintRule {
     for (int i = 0; i < allComments.length; i++) {
       var comment = allComments[i];
       var content = comment.lexeme.trim();
-      
+
       if (_aiOtherRegExp.hasMatch(content)) {
         _validateAiOtherDeclaration(comment, allComments, i, reporter);
       }
     }
   }
 
-  void _validateAiOtherDeclaration(Token startComment, List<Token> allComments, 
-      int startIndex, reporter) {
+  void _validateAiOtherDeclaration(
+      Token startComment, List<Token> allComments, int startIndex, reporter) {
     var content = startComment.lexeme.trim();
-    
+
     // Check if the first line follows the proper format
     if (!_aiOtherExpectedRegExp.hasMatch(content)) {
       reporter.atOffset(

@@ -11,15 +11,15 @@ class AiPromptResponsePairLint extends DartLintRule {
       RegExp(r'//\s*AI_PROMPT\(([^()\s]+)\):', caseSensitive: false);
   static final _aiResponseRegExp =
       RegExp(r'//\s*AI_RESPONSE\(([^()\s]+)\):', caseSensitive: false);
+  static final _reflectionRegExp =
+      RegExp(r'//\s*REFLECTION\b', caseSensitive: false);
 
   const AiPromptResponsePairLint() : super(code: _code);
 
   static const _code = LintCode(
       name: 'ai_prompt_response_pair',
-      problemMessage:
-          'AI_PROMPT must be followed by AI_RESPONSE with the same tool name',
-      correctionMessage: _desc,
-      errorSeverity: ErrorSeverity.ERROR);
+      problemMessage: _desc,
+      errorSeverity: DiagnosticSeverity.ERROR);
 
   @override
   void run(
@@ -68,12 +68,14 @@ class AiPromptResponsePairLint extends DartLintRule {
       }
     }
 
-    // Check if each prompt has a matching response
+    // Check if each prompt has a matching response and proper ordering
     for (var entry in promptTokens.entries) {
       var toolName = entry.key;
       var promptToken = entry.value;
 
-      if (!_hasMatchingResponse(allComments, toolName, promptToken)) {
+      var validationResult =
+          _validatePromptResponsePair(allComments, toolName, promptToken);
+      if (!validationResult.isValid) {
         reporter.atOffset(
           errorCode: _code,
           offset: promptToken.offset,
@@ -83,7 +85,7 @@ class AiPromptResponsePairLint extends DartLintRule {
     }
   }
 
-  bool _hasMatchingResponse(
+  _ValidationResult _validatePromptResponsePair(
       List<Token> allComments, String toolName, Token promptToken) {
     // Find the position of the prompt token in the list
     int promptIndex = -1;
@@ -94,22 +96,50 @@ class AiPromptResponsePairLint extends DartLintRule {
       }
     }
 
-    if (promptIndex == -1) return false;
+    if (promptIndex == -1)
+      return _ValidationResult(false, 'Prompt token not found');
+
+    // Find the next REFLECTION after the prompt
+    int? nextReflectionIndex;
+    for (int i = promptIndex + 1; i < allComments.length; i++) {
+      var comment = allComments[i];
+      var content = comment.lexeme.trim();
+      var reflectionMatch = _reflectionRegExp.firstMatch(content);
+      if (reflectionMatch != null) {
+        nextReflectionIndex = i;
+        break;
+      }
+    }
 
     // Look for AI_RESPONSE with the same tool name in subsequent comments
-    for (int i = promptIndex + 1; i < allComments.length; i++) {
+    // but before the next REFLECTION (if any)
+    int searchLimit = nextReflectionIndex ?? allComments.length;
+
+    for (int i = promptIndex + 1; i < searchLimit; i++) {
       var comment = allComments[i];
       var content = comment.lexeme.trim();
       var match = _aiResponseRegExp.firstMatch(content);
       try {
         if (match != null && match.group(1) == toolName) {
-          return true;
+          return _ValidationResult(true, 'Valid prompt-response pair');
         }
       } catch (e) {
         print('Error occurred while checking responses: $e');
       }
     }
 
-    return false;
+    if (nextReflectionIndex != null) {
+      return _ValidationResult(
+          false, 'AI_RESPONSE not found before the next REFLECTION');
+    } else {
+      return _ValidationResult(false, 'AI_RESPONSE not found');
+    }
   }
+}
+
+class _ValidationResult {
+  final bool isValid;
+  final String message;
+
+  _ValidationResult(this.isValid, this.message);
 }

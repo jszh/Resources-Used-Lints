@@ -2,9 +2,6 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/token.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
-const _desc = r'Use proper REFLECTION format: '
-    '// REFLECTION: Student reflection here';
-
 class ReflectionFormatLint extends DartLintRule {
   static final _reflectionRegExp =
       RegExp(r'//+\s*REFLECTION\b', caseSensitive: false);
@@ -19,7 +16,6 @@ class ReflectionFormatLint extends DartLintRule {
     name: 'reflection_format',
     problemMessage:
         'REFLECTION comment must follow format: // REFLECTION: Reflection text',
-    correctionMessage: _desc,
   );
 
   @override

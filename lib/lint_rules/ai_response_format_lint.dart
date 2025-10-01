@@ -2,9 +2,6 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/token.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
-const _desc = r'Use proper AI_RESPONSE format: '
-    '// AI_RESPONSE(GENAI_TOOL_NAME): Output here';
-
 class AiResponseFormatLint extends DartLintRule {
   static final _aiResponseRegExp =
       RegExp(r'//+\s*AI_RESPONSE\b', caseSensitive: false);
@@ -19,7 +16,6 @@ class AiResponseFormatLint extends DartLintRule {
     name: 'ai_response_format',
     problemMessage:
         'AI_RESPONSE comment must follow format: // AI_RESPONSE(TOOL_NAME): Output text',
-    correctionMessage: _desc,
   );
 
   @override

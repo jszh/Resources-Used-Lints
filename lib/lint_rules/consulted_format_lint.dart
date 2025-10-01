@@ -2,9 +2,6 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/token.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
-const _desc = r'Use proper CONSULTED format: '
-    '// CONSULTED(URL_OF_RESOURCE): Explanation';
-
 class ConsultedFormatLint extends DartLintRule {
   static final _consultedRegExp =
       RegExp(r'//+\s*CONSULTED\b', caseSensitive: false);
@@ -19,7 +16,6 @@ class ConsultedFormatLint extends DartLintRule {
     name: 'consulted_format',
     problemMessage:
         'CONSULTED comment must follow format: // CONSULTED(URL): Explanation',
-    correctionMessage: _desc,
   );
 
   @override

@@ -2,9 +2,6 @@ import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/token.dart';
 import 'package:custom_lint_builder/custom_lint_builder.dart';
 
-const _desc = r'Use proper AI_PROMPT format: '
-    '// AI_PROMPT(GENAI_TOOL_NAME): Prompt here';
-
 class AiPromptFormatLint extends DartLintRule {
   static final _aiPromptRegExp =
       RegExp(r'//+\s*AI_PROMPT\b', caseSensitive: false);
@@ -19,7 +16,6 @@ class AiPromptFormatLint extends DartLintRule {
     name: 'ai_prompt_format',
     problemMessage:
         'AI_PROMPT comment must follow format: // AI_PROMPT(TOOL_NAME): Prompt text',
-    correctionMessage: _desc,
   );
 
   @override
