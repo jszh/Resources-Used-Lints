@@ -3,19 +3,19 @@
   "packages": [
     {
       "name": "_fe_analyzer_shared",
-      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-88.0.0",
+      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/_fe_analyzer_shared-85.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.5"
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/analyzer-8.1.1",
+      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/analyzer-7.6.0",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.5"
     },
     {
       "name": "analyzer_plugin",
-      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/analyzer_plugin-0.13.7",
+      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/analyzer_plugin-0.13.4",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -75,31 +75,31 @@
     },
     {
       "name": "custom_lint",
-      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/custom_lint-0.8.1",
+      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/custom_lint-0.7.6",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "custom_lint_builder",
-      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/custom_lint_builder-0.8.1",
+      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/custom_lint_builder-0.7.6",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "custom_lint_core",
-      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/custom_lint_core-0.8.1",
+      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/custom_lint_core-0.7.5",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "custom_lint_visitor",
-      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/custom_lint_visitor-1.0.0+8.1.1",
+      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/custom_lint_visitor-1.0.0+7.7.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "dart_style",
-      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/dart_style-3.1.2",
+      "rootUri": "file:///Users/jason/.pub-cache/hosted/pub.dev/dart_style-3.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },

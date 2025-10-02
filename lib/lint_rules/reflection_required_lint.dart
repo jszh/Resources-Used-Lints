@@ -7,28 +7,29 @@ import 'dart:math' as math;
 class ReflectionRequiredLint extends DartLintRule {
   // Only match properly formatted comments
   static final _consultedRegExp = RegExp(
-      r'//\s*CONSULTED\((?=[^()]*\w)[^()\s](?:[^()]*[^()\s])?\):\s*.+',
-      caseSensitive: false);
+    r'//\s*CONSULTED\((?=[^()]*\w)[^()\s](?:[^()]*[^()\s])?\):\s*.+',
+    caseSensitive: false,
+  );
   static final _aiCommentRegExp = RegExp(
-      r'//\s*AI_(PROMPT|RESPONSE|OTHER)\((?=[^()]*\w)[^()\s](?:[^()]*[^()\s])?\):\s*.+',
-      caseSensitive: false);
-  static final _reflectionRegExp =
-      RegExp(r'//\s*REFLECTION:\s*.+', caseSensitive: false);
+    r'//\s*AI_(PROMPT|RESPONSE|OTHER)\((?=[^()]*\w)[^()\s](?:[^()]*[^()\s])?\):\s*.+',
+    caseSensitive: false,
+  );
+  static final _reflectionRegExp = RegExp(
+    r'//\s*REFLECTION:\s*.+',
+    caseSensitive: false,
+  );
 
   const ReflectionRequiredLint() : super(code: _code);
 
   static const _code = LintCode(
-      name: 'reflection_required',
-      problemMessage:
-          'CONSULTED and AI_* comments must be followed by REFLECTION',
-      errorSeverity: DiagnosticSeverity.ERROR);
+    name: 'reflection_required',
+    problemMessage:
+        'CONSULTED and AI_* comments must be followed by REFLECTION',
+    errorSeverity: ErrorSeverity.ERROR,
+  );
 
   @override
-  void run(
-    CustomLintResolver resolver,
-    reporter,
-    CustomLintContext context,
-  ) {
+  void run(CustomLintResolver resolver, reporter, CustomLintContext context) {
     context.registry.addCompilationUnit((node) {
       _visitCompilationUnit(node, reporter);
     });
@@ -81,7 +82,10 @@ class ReflectionRequiredLint extends DartLintRule {
         if (currentGroup.isNotEmpty && !_isBlankComment(content)) {
           // Look ahead to see if there's a reflection coming up
           bool hasUpcomingReflection = _hasReflectionInRange(
-              allComments, i, math.min(i + 20, allComments.length));
+            allComments,
+            i,
+            math.min(i + 20, allComments.length),
+          );
 
           if (!hasUpcomingReflection) {
             // No reflection found - report the group

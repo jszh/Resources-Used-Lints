@@ -1,14 +1,14 @@
 # pubspec.yaml
 name: resources_used_lints
-version: 0.2.1
+version: 0.2.2
 
 environment:
   sdk: "^3.9.2"
 
 dependencies:
-  analyzer: ^8.1.1
-  analyzer_plugin: ^0.13.7
-  custom_lint_builder: ^0.8.1
+  analyzer: ^7.0.0
+  analyzer_plugin: ^0.13.4
+  custom_lint_builder: ^0.7.3
 
 description: Lint rules for documentation of resources used in CSE 340.
 

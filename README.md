@@ -24,16 +24,11 @@ Example:
 
 ### AI_PROMPT Comments
 
+This must be followed by an AI_RESPONSE comment.
 Document prompts given to AI tools:
 
 ```dart
 // AI_PROMPT(GENAI_TOOL_NAME): The prompt text provided to the AI
-```
-
-Example:
-
-```dart
-// AI_PROMPT(ChatGPT): Please help me implement a binary search function in Dart
 ```
 
 ### AI_RESPONSE Comments
@@ -46,16 +41,6 @@ Document responses received from AI tools:
 //   with proper indentation
 ```
 
-Example:
-
-```dart
-// AI_RESPONSE(ChatGPT): Here's a binary search implementation:
-//   int binarySearch(List<int> arr, int target) {
-//     int left = 0, right = arr.length - 1;
-//     // ... rest of implementation
-//   }
-```
-
 ### AI_OTHER Comments
 
 Document other uses of AI tools:
@@ -64,24 +49,13 @@ Document other uses of AI tools:
 // AI_OTHER(GENAI_TOOL_NAME): Description of other AI assistance received
 ```
 
-Example:
-
-```dart
-// AI_OTHER(GitHub Copilot): Used autocomplete suggestions for variable naming
-```
-
 ### REFLECTION Comments
 
+This must follow CONSULTED or AI_* comments.
 Document learning and modifications made:
 
 ```dart
 // REFLECTION: Student reflection on what was learned and any changes made
-```
-
-Example:
-
-```dart
-// REFLECTION: The AI solution needed modification to handle edge cases properly. I learned about the importance of input validation.
 ```
 
 ## Lint Rules
@@ -106,7 +80,7 @@ Example:
 ```yaml
 dev_dependencies:
   resources_used_lints:
-  custom_lint: ^0.8.1
+  custom_lint: ^0.7.3
 ```
 
 2. Create or update your `analysis_options.yaml`:

@@ -7,19 +7,26 @@ const _desc =
     r'AI_PROMPT must be followed by AI_RESPONSE with the same tool name';
 
 class AiPromptResponsePairLint extends DartLintRule {
-  static final _aiPromptRegExp =
-      RegExp(r'//\s*AI_PROMPT\(([^()\s]+)\):', caseSensitive: false);
-  static final _aiResponseRegExp =
-      RegExp(r'//\s*AI_RESPONSE\(([^()\s]+)\):', caseSensitive: false);
-  static final _reflectionRegExp =
-      RegExp(r'//\s*REFLECTION\b', caseSensitive: false);
+  static final _aiPromptRegExp = RegExp(
+    r'//\s*AI_PROMPT\(([^()\s]+)\):',
+    caseSensitive: false,
+  );
+  static final _aiResponseRegExp = RegExp(
+    r'//\s*AI_RESPONSE\(([^()\s]+)\):',
+    caseSensitive: false,
+  );
+  static final _reflectionRegExp = RegExp(
+    r'//\s*REFLECTION\b',
+    caseSensitive: false,
+  );
 
   const AiPromptResponsePairLint() : super(code: _code);
 
   static const _code = LintCode(
-      name: 'ai_prompt_response_pair',
-      problemMessage: _desc,
-      errorSeverity: DiagnosticSeverity.ERROR);
+    name: 'ai_prompt_response_pair',
+    problemMessage: _desc,
+    errorSeverity: ErrorSeverity.ERROR,
+  );
 
   @override
   void run(
@@ -33,7 +40,10 @@ class AiPromptResponsePairLint extends DartLintRule {
   }
 
   void _visitCompilationUnit(
-      CompilationUnit node, reporter, CustomLintResolver resolver) {
+    CompilationUnit node,
+    reporter,
+    CustomLintResolver resolver,
+  ) {
     // Collect all comments from the compilation unit
     List<Token> allComments = [];
     Token? token = node.beginToken;
@@ -73,8 +83,11 @@ class AiPromptResponsePairLint extends DartLintRule {
       var toolName = entry.key;
       var promptToken = entry.value;
 
-      var validationResult =
-          _validatePromptResponsePair(allComments, toolName, promptToken);
+      var validationResult = _validatePromptResponsePair(
+        allComments,
+        toolName,
+        promptToken,
+      );
       if (!validationResult.isValid) {
         reporter.atOffset(
           errorCode: _code,
@@ -86,7 +99,10 @@ class AiPromptResponsePairLint extends DartLintRule {
   }
 
   _ValidationResult _validatePromptResponsePair(
-      List<Token> allComments, String toolName, Token promptToken) {
+    List<Token> allComments,
+    String toolName,
+    Token promptToken,
+  ) {
     // Find the position of the prompt token in the list
     int promptIndex = -1;
     for (int i = 0; i < allComments.length; i++) {
@@ -130,7 +146,9 @@ class AiPromptResponsePairLint extends DartLintRule {
 
     if (nextReflectionIndex != null) {
       return _ValidationResult(
-          false, 'AI_RESPONSE not found before the next REFLECTION');
+        false,
+        'AI_RESPONSE not found before the next REFLECTION',
+      );
     } else {
       return _ValidationResult(false, 'AI_RESPONSE not found');
     }
